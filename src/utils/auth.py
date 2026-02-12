@@ -1,4 +1,4 @@
-__all__ = "validate_turnstile"
+__all__ = ("validate_turnstile",)
 
 
 async def validate_turnstile(state, response: str) -> bool:
