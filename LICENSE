@@ -1,21 +1,61 @@
-MIT License
+TeachCraft License
+
+Version 1.0
 
 Copyright (c) 2026 ItsRqtl
+Copyright (c) 2026 SleepyNeko Studios Ltd.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software project, known as TeachCraft (the “Software”), is made
+available under the terms below.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. General Grant of Permission
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the “Software”), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following
+conditions, except as explicitly restricted in Section 2.
+
+2. Explicit Prohibition – TeachFlow
+
+No rights are granted under this License to:
+- The project known as TeachFlow;
+- Any organization operating, controlling, funding, or maintaining TeachFlow;
+- Any successor, rebrand, fork, or continuation of TeachFlow;
+- Any legal entity primarily acting for the operational benefit of TeachFlow.
+
+TeachFlow and its affiliated entities are expressly denied permission to:
+- Use the Software;
+- Copy the Software;
+- Modify the Software;
+- Incorporate the Software into any system;
+- Train automated systems on the Software;
+- Derive works from the Software;
+- Or benefit from the Software in any direct or indirect operational capacity.
+
+Any such use constitutes willful copyright infringement.
+
+3. Downstream Preservation
+
+Any redistribution, sublicense, or derivative work of the Software must:
+    
+- Include this License in full;
+- Preserve Section 2 without modification;
+- Not grant rights to any prohibited party listed in Section 2.
+
+Any attempt to remove, dilute, or circumvent the TeachFlow prohibition voids the grant of rights.
+
+4. Statement of Position
+
+TeachCraft exists to demonstrate the value of intentional, human-authored engineering. TeachFlow
+represents an operational philosophy fundamentally incompatible with that principle. This exclusion
+is intentional and reflects the author’s position regarding TeachFlow and its methodology.
+
+5. No Warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
