@@ -3,4 +3,5 @@ host = "smtp.example.com"
 port = 465
 username = "teachcraft@example.com"
 password = "your_email_password"
+use_tls = true
 sender = "teachcraft@example.com"
