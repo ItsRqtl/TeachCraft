@@ -1,3 +1,5 @@
+import hashlib
+import hmac
 import os
 
 from cryptography.hazmat.primitives import hashes
@@ -44,6 +46,13 @@ class Keyring:
         nonce = data[:12]
         ciphertext = data[12:]
         return aesgcm.decrypt(nonce, ciphertext, None)
+
+    def hash_token(self, purpose: str, raw: str) -> bytes:
+        if purpose == "email":
+            return hmac.new(self.token_mac_key, raw.encode(), hashlib.sha256).digest()
+        elif purpose == "password":
+            return hmac.new(self.password_mac_key, raw.encode(), hashlib.sha256).digest()
+        raise ValueError("Invalid token purpose.")
 
     @staticmethod
     def generate_secret(length: int = 32) -> bytes:

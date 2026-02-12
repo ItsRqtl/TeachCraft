@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachCraft</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" href="/static/images/favicon.ico">
+    <link rel="preconnect" href="https://challenges.cloudflare.com">
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <form method="post">
+            <input type="email" name="email" placeholder="Email" required minlength="5" maxlength="254">
+            <input type="password" name="password" placeholder="Password" required minlength="8" maxlength="32">
+            <input type="submit" name="submit" value="Login">
+            <input type="submit" name="submit" value="Register">
+            <div class="cf-turnstile" data-sitekey="{{ request.app.state.app_conf["turnstile.site_key"] }}"></div>
+        </form>
+    </main>
+        
+    <footer>
+        <p>&copy; 2026 TeachCraft. All rights reserved.</p>
+    </footer>
+    {% if alert %}
+    <script>
+        alert("{{ alert }}");
+    </script>
+    {% endif %}
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

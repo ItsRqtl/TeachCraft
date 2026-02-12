@@ -21,7 +21,7 @@ class DatabaseClient:
             "password": password,
             "db": db,
         }
-        self._keyring = keyring
+        self.keyring = keyring
         self._pool: Optional[aiomysql.Pool] = None
         self._daos: Dict[str, BaseDAO] = {}
         for n, c in DAO_CLASSES.items():

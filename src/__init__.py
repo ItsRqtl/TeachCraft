@@ -1,5 +1,6 @@
 from contextlib import asynccontextmanager
 
+import aiohttp
 import decouple
 from aiomysql import DatabaseError
 from fastapi import FastAPI, Request
@@ -10,6 +11,7 @@ from starlette.exceptions import HTTPException
 from starlette.middleware.sessions import SessionMiddleware
 
 from .database import DatabaseClient
+from .mail import Mailer
 from .routers import root_router
 from .utils import ConfigLoader, Keyring
 
@@ -28,10 +30,22 @@ class AppFactory:
                 await ins.state.database.initialize()
             except DatabaseError as e:
                 raise RuntimeError("Failed to initialize database client.") from e
+
+            mail_conf = ConfigLoader("config/mail.toml")
+            ins.state.mailer = Mailer(**mail_conf["smtp"])
             try:
-                yield
+                await ins.state.mailer.initialize()
+            except Exception as e:
+                raise RuntimeError("Failed to initialize mailer.") from e
+
+            try:
+                ins.state.app_conf = ConfigLoader("config/application.toml")
+                async with aiohttp.ClientSession() as http:
+                    ins.state.http = http
+                    yield
             finally:
                 await ins.state.database.close()
+                await ins.state.mailer.close()
 
         res = FastAPI(title="TeachCraft", docs_url=None, redoc_url=None, lifespan=lifespan)
 
@@ -47,7 +61,7 @@ class AppFactory:
             secret_key=self.keyring.get_session_secret(),
             session_cookie="session",
             same_site="lax",
-            https_only=True,
+            https_only=False,  # FIXME: should be True in production
             max_age=60 * 60 * 24 * 7,  # 7 days in seconds
         )
 
