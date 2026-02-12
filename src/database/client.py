@@ -4,6 +4,7 @@ from typing import AsyncGenerator, Dict, Optional
 
 import aiomysql
 
+from ..utils import Keyring
 from .daos import DAO_CLASSES, BaseDAO
 
 __all__ = ("DatabaseClient",)
@@ -12,14 +13,15 @@ __all__ = ("DatabaseClient",)
 class DatabaseClient:
     _ready = asyncio.Event()
 
-    def __init__(self, host: str, port: int, user: str, password: str, db: str) -> None:
-        self.dsn = {
+    def __init__(self, host: str, port: int, user: str, password: str, db: str, keyring: Keyring) -> None:
+        self._dsn = {
             "host": host,
             "port": port,
             "user": user,
             "password": password,
             "db": db,
         }
+        self._keyring = keyring
         self._pool: Optional[aiomysql.Pool] = None
         self._daos: Dict[str, BaseDAO] = {}
         for n, c in DAO_CLASSES.items():
@@ -35,7 +37,7 @@ class DatabaseClient:
     async def initialize(self) -> None:
         if self._pool or self._ready.is_set():
             raise RuntimeError("Database client is already initialized.")
-        self._pool = await aiomysql.create_pool(**self.dsn, autocommit=True, cursorclass=aiomysql.DictCursor)
+        self._pool = await aiomysql.create_pool(**self._dsn, autocommit=True, cursorclass=aiomysql.DictCursor)
         for dao in self._daos.values():
             await dao.initialize()
         self._ready.set()

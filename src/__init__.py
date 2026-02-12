@@ -11,17 +11,19 @@ from starlette.middleware.sessions import SessionMiddleware
 
 from .database import DatabaseClient
 from .routers import root_router
-from .utils import ConfigLoader
+from .utils import ConfigLoader, Keyring
 
 __all__ = ("app",)
 
 
 class AppFactory:
+    keyring = Keyring(decouple.config("master_key"), "teachcraft:v1")
+
     def build(self) -> FastAPI:
         @asynccontextmanager
         async def lifespan(ins: FastAPI):
             db_conf = ConfigLoader("config/database.toml")
-            ins.state.database = DatabaseClient(**db_conf["dsn"])
+            ins.state.database = DatabaseClient(**db_conf["dsn"], keyring=self.keyring)
             try:
                 await ins.state.database.initialize()
             except DatabaseError as e:
@@ -42,10 +44,11 @@ class AppFactory:
         )
         res.add_middleware(
             SessionMiddleware,
-            secret_key=decouple.config("session_secret"),
+            secret_key=self.keyring.get_session_secret(),
             session_cookie="session",
             same_site="lax",
             https_only=True,
+            max_age=60 * 60 * 24 * 7,  # 7 days in seconds
         )
 
         @res.exception_handler(HTTPException)
