@@ -1,0 +1,6 @@
+[smtp]
+host = "smtp.example.com"
+port = 465
+username = "teachcraft@example.com"
+password = "your_email_password"
+sender = "teachcraft@example.com"

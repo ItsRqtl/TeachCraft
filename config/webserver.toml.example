@@ -1,0 +1,11 @@
+[app]
+bind = "0.0.0.0:80"
+workers = 0
+
+[ssl]
+enabled = false
+certfile = "certs/fullchain.pem"
+keyfile = "certs/privkey.pem"
+
+[dev]
+reload = false
